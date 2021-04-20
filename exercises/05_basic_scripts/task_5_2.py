@@ -24,3 +24,34 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+
+ip = input()
+oct1, oct2, oct3, octmask = ip.split('.')
+oct4, mask = octmask.split('/')
+# вот это уже хорошо) а дальще прям ваще будет великолепно, но ничего умнее не придумал)
+oct1=int(oct1)
+oct2=int(oct2)
+oct3=int(oct3)
+oct4=int(oct4)
+mask_num=int(mask)
+mask_bin = ("1"*mask_num) + "0" * (32 - mask_num)
+# вот збс
+m_oct1 = str(mask_bin)[0:8]
+m_oct2 = str(mask_bin)[8:16]
+m_oct3 = str(mask_bin)[16:24]
+m_oct4 = str(mask_bin)[24:]
+
+result= '''
+Network:
+{0:<8} {1:<8} {2:<8} {3:<8}
+{0:08b} {1:08b} {2:08b} {3:08b}
+
+Mask:
+/{4:<8}
+{10:<8} {11:<8} {12:<8} {13:<8}
+{6:<8} {7:<8} {8:<8} {9:<8}
+'''
+
+print (result.format(oct1, oct2, oct3, oct4, mask_num, mask_bin, m_oct1, m_oct2, m_oct3, m_oct4, int(m_oct1,2), int(m_oct2,2), int(m_oct3,2), int(m_oct4,2)))
+#а потом я посмотрел ответ, а там примерно так-же, только не криво как у меня. ну хотябы в верном направлении делаю
