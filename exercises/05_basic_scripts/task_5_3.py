@@ -49,6 +49,9 @@ switchport trunk encapsulation dot1q
 switchport mode trunk
 switchport trunk allowed vlan 2,3,4,5
 """
+vtype=input('Введите режим работы интерфейса (access/trunk): ')
+num=input('Введите тип и номер интерфейса: ')
+vlan=input('Введите номер влан(ов): ')
 
 access_template = [
     "switchport mode access",
@@ -63,3 +66,10 @@ trunk_template = [
     "switchport mode trunk",
     "switchport trunk allowed vlan {}",
 ]
+
+choice={'trunk': trunk_template, 'access': access_template}
+
+print('\ninterface', num)
+print(str(choice[vtype]).replace('\n', '', 1).replace(', ', '\n').replace("'", '').replace('[', '').replace(']', '').format(vlan)) 
+#тут я тупанул и нне увидел как это решено в книжке. в 3а уже исправил
+

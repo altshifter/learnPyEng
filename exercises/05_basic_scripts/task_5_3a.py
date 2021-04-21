@@ -12,6 +12,11 @@ VLANа или списка VLANов:
 То есть эту задачу можно решить без использования условия if и циклов for/while.
 """
 
+vtype=input('Введите режим работы интерфейса (access/trunk): ')
+num=input('Введите тип и номер интерфейса: ')
+choice={'trunk': 'Введите разрешенные VLANы:', 'access': 'Введите номер VLAN:'}
+vlan=input(choice[vtype])
+
 access_template = [
     "switchport mode access",
     "switchport access vlan {}",
@@ -25,3 +30,8 @@ trunk_template = [
     "switchport mode trunk",
     "switchport trunk allowed vlan {}",
 ]
+
+choice2={'trunk': trunk_template, 'access': access_template}
+
+print('\ninterface', num)
+print('\n'.join(choice2[vtype]).format(vlan))
