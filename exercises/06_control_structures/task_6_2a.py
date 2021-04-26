@@ -17,7 +17,8 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
-
+              #попытка 1. работает, но очень криво все.
+'''
 ip=input('ip adress: ')
 ip_oct=ip.split('.')
 big=False
@@ -48,3 +49,29 @@ if big:
 else:
   print('Неправильный IP-адрес')
 #это не глупо если это работает
+'''
+#пробежался по решениям.. мдее.. надо заного прочитать тему.. попробую еще раз
+#попытка 2
+
+ip=input('ip adress: ')
+ip_oct=ip.split('.')
+correct_ip=True
+
+if len(ip_oct) != 4:
+  correct_ip=False
+for num in ip_oct:
+  correct_ip = num.isdigit() and 0 <= int(num) <= 255 and correct_ip
+
+if correct_ip:                                 
+  if ip == '0.0.0.0':
+    print('unassigned')
+  elif ip == '255.255.255.255':
+    print('local broadcast')
+  elif int(ip_oct[0]) <= 223:
+    print('unicast')
+  elif 239 >= int(ip_oct[0]) >= 224:
+    print('multicast')
+  else:
+    print('unused')
+else:
+  print('Неправильный IP-адрес')
