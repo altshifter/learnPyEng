@@ -8,8 +8,6 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
-#Попытка раз. работает но выглядит оч криво
-'''
 ip=input('ip adress: ')
 ip_oct=ip.split('.')
 big=False
@@ -45,35 +43,3 @@ while not ip_correct:
     ip=input('ip adress: ')
 #это не глупо если это работает 2
 #но под конец запутался уже
-'''
-# попытка 2
-
-while True:
-  ip = input('ip: ')
-  ip_oct=ip.split('.')
-  correct_ip=True
-  if not len(ip_oct) == 4:
-    correct_ip=False
-  else:
-    for num in ip_oct:
-      if not (num.isdigit() and 0 <= int(num) <= 255 and correct_ip):
-        correct_ip=False
-        break
-  if correct_ip:                                 
-    if ip == '0.0.0.0':
-      print('unassigned')
-      break
-    elif ip == '255.255.255.255':
-      print('local broadcast')
-      break
-    elif int(ip_oct[0]) <= 223:
-      print('unicast')
-      break
-    elif 239 >= int(ip_oct[0]) >= 224:
-      print('multicast')
-      break
-    else:
-      print('unused')
-      break
-  else:
-    print('Неправильный IP-адрес')

@@ -56,7 +56,7 @@ trunk_template = [
 
 access = {"0/12": "10", "0/14": "11", "0/16": "17", "0/17": "150"}
 trunk = {"0/1": ["add", "10", "20"], "0/2": ["only", "11", "30"], "0/4": ["del", "17"]}
-'''
+
 for intf, vlan in access.items():
     print("interface FastEthernet" + intf)
     for command in access_template:
@@ -64,48 +64,3 @@ for intf, vlan in access.items():
             print(f" {command} {vlan}")
         else:
             print(f" {command}")
-   '''
-   # попытка номер раз   
-'''
-                               #ВАЩЕ НЕ УВЕРЕН ЧТО ТАК ДОЛЖНО БЫТЬ.... но работает
-for intf, vlan in trunk.items():
-    print("interface FastEthernet " + intf)
-    for command in trunk_template:
-        if command.endswith("allowed vlan"):
-            for keys, vlan in trunk.items():
-              a=','.join(trunk[intf])
-              if a.startswith('add,'):
-                vlan2=a.replace('add,', 'add ')
-                print(f" {command} {vlan2}")
-                break
-              elif a.startswith('only,'):
-                vlan2=a.replace('only,', '')
-                print(f" {command} {vlan2}")
-                break
-              elif a.startswith('del,'):
-                vlan2=a.replace('del,', 'remove ')
-                print(f" {command} {vlan2}")
-                break
-        else:
-            print(f" {command}")
-                                          #надо решения на задания посмотреть. мне кажется, что я делаю что-то не так
-                                          #это не глупо если это работает 3
-                                          '''
-                                          # номер два
-
-for intf, vlan in trunk.items():
-  print(f"interface FastEthernet {intf}")
-  for command in trunk_template:
-    if command.endswith("allowed vlan"):
-      do = vlan[0]
-      vlans = ",".join(vlan[1:])
-      if do == "add":
-        print(f" {command} add {vlans}")
-      elif do == "only":
-        print(f" {command} {vlans}")
-      elif do == "del":
-        print(f" {command} remove {vlans}")
-    else:
-      print(f" {command}")
-
-                                          
