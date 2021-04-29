@@ -16,4 +16,14 @@
 
 """
 
+from sys import argv
+out=open(argv[2], 'w')
 ignore = ["duplex", "alias", "configuration"]
+
+
+with open(argv[1]) as f:
+  for line in f:
+    if line[0] != '!' and not set(ignore) & set(line.split()):
+      out.write(line)
+      
+out.close()
